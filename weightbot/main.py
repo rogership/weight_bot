@@ -1,3 +1,7 @@
+##Script that receives messages from bot belonged group API or
+#directly from bot.
+
+import logging
 import telebot
 
 API_TOKEN = "5401394631:AAHD_3QN9YDt56bgPhq9mnNU-OOdy3oE5aY"
@@ -21,4 +25,8 @@ def echo_all(message):
 # def echo_all(message):
 # 	bot.reply_to(message, message.text)
 
+
+
 bot.infinity_polling()
+logger = telebot.logger
+telebot.logger.setLevel(logging.DEBUG) # Outputs debug messages to console.
