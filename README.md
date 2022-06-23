@@ -13,7 +13,7 @@
 
         allow groups
 
-    1.2. Estruturar a mensagem para parse do comando peso
+    1.2. Estruturar o script para parse do comando peso
 
 2.  Código recebe dados via Telegram API Handler como variável "mensagem"
     arg parser trata mensagem, primeiro comando <peso> ou outro argumento
