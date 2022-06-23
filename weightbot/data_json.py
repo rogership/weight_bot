@@ -2,18 +2,21 @@ import datetime
 import json
 from pathlib import Path
 
-def data_json(key: str, data: float, date="") -> json:
+def add_data(key: str, data: float, file: str, date="") -> json:
     """Receives data and dump on json file
+       create file if it not exist
     
     param: key: key to be inserted in dictionary
     param: data: data to be dumped on json file
+    param: file:
+    param: date:
     
     return json file on format {date: {key: data}}    
     """
     file = "/home/roger/Projetos/weight_bot/weightbot/data/data.json"
     if not date:
-        dateObj = datetime.date.today()
-        date = f"{dateObj.day}/{dateObj.month}/{dateObj.year}"
+        dbj = datetime.date.today()
+        date = f"{dbj.day}/{dbj.month}/{dbj.year}"
         
     try:
         with open(f"{file}", "r") as f:
@@ -26,10 +29,14 @@ def data_json(key: str, data: float, date="") -> json:
     with open(f"{file}", "w") as f:
         content[date] = {key: data}
         json.dump(content, f, indent=4)
-    
-    
+
+def del_data(key: str, data: float, file: str, date="") -> json:
+    """
+    """    
+    pass
+
 if __name__ == "__main__":
-    data_json("peso", 3, date="17/06/2022")
-    data_json("peso", 4, date="18/06/2022")
-    data_json("peso", 85, date="17/06/2022")
-    data_json("peso", 86)
+    add_data("peso", 3, date="17/06/2022")
+    add_data("peso", 4, date="18/06/2022")
+    add_data("peso", 85, date="17/06/2022")
+    add_data("peso", 86)
