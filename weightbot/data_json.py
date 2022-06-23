@@ -2,7 +2,7 @@ import datetime
 import json
 from pathlib import Path
 
-def add_data(key: str, data: float, file: str, date="") -> json:
+def add_data(key: str, data: float, file: str="", date: str="") -> json:
     """Receives data and dump on json file
        create file if it not exist
     
@@ -13,7 +13,11 @@ def add_data(key: str, data: float, file: str, date="") -> json:
     
     return json file on format {date: {key: data}}    
     """
-    file = "/home/roger/Projetos/weight_bot/weightbot/data/data.json"
+    #file = "/home/roger/Projetos/weight_bot/weightbot/data/data.json"
+    file = Path("data/data.json")
+    file.mkdir(parents=True, exist_ok=True)
+    
+    
     if not date:
         dbj = datetime.date.today()
         date = f"{dbj.day}/{dbj.month}/{dbj.year}"
