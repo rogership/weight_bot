@@ -16,8 +16,9 @@ def send_welcome(message):
 @bot.message_handler(commands=["peso"])
 def get_peso(message):
 	try:
-		value = message.text.split()[1]
-		date = message.text.split()[2] if len(message.text.split()) > 2 else ""
+		response = message.text.split()
+		value = float(response[1])
+		date = response[2] if len(response) > 2 else ""
 		bot.reply_to(message, (value, date))
 		man_json(key="peso", data=value, date=date)
 		bot.reply_to(message, "OK")

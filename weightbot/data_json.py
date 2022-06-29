@@ -26,12 +26,14 @@ def man_json(key: str, data: float, date="") -> json:
     
     with open(f"{file}", "w") as f:
         content[date] = {key: data}
-        ordered = OrderedDict(sorted(content.items(), key=lambda t: t[0]))
+        ordered = OrderedDict(sorted(content.items(),\
+            key = lambda x:datetime.datetime.strptime(x[0], '%d/%m/%Y')))
         json.dump(ordered, f, indent=4)
     
     
 if __name__ == "__main__":
-    data_json("peso", 3, date="17/06/2022")
-    data_json("peso", 4, date="18/06/2022")
-    data_json("peso", 85, date="17/06/2022")
-    data_json("peso", 86)
+    man_json("peso", 3, date="17/06/2022")
+    man_json("peso", 4, date="18/06/2022")
+    man_json("peso", 85, date="17/06/2022")
+    man_json("peso", 86)
+    man_json("peso", 100, date="10/07/2022")
