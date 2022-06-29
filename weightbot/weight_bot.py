@@ -1,11 +1,12 @@
-##Script that receives messages from bot belonged group API or
-#directly from bot.
-
+import configparser
 import logging
 import telebot
-from data_json import man_json
+from manage_file import man_json
 
-API_TOKEN = "5401394631:AAHD_3QN9YDt56bgPhq9mnNU-OOdy3oE5aY"
+
+config = configparser.ConfigParser()
+config.read("config.ini")
+API_TOKEN = config["TelegramBot"]["token"]
 
 bot = telebot.TeleBot(API_TOKEN)
 
