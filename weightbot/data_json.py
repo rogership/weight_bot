@@ -1,4 +1,4 @@
-import datetime
+from datetime import date, datetime
 import json
 from pathlib import Path
 from collections import OrderedDict
@@ -13,7 +13,7 @@ def man_json(key: str, data: float, date="") -> json:
     """
     file = "/home/roger/Projetos/weight_bot/weightbot/data/data.json"
     if not date:
-        dateObj = datetime.date.today()
+        dateObj = date.today()
         date = f"{dateObj.day}/{dateObj.month}/{dateObj.year}"
         
     try:
@@ -26,8 +26,7 @@ def man_json(key: str, data: float, date="") -> json:
     
     with open(f"{file}", "w") as f:
         content[date] = {key: data}
-        ordered = OrderedDict(sorted(content.items(),\
-            key = lambda x:datetime.datetime.strptime(x[0], '%d/%m/%Y')))
+        ordered = OrderedDict(sorted(content.items(), key = lambda x:datetime.strptime(x[0], '%d/%m/%Y')))
         json.dump(ordered, f, indent=4)
     
     
