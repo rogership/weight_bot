@@ -1,8 +1,9 @@
 import datetime
 import json
 from pathlib import Path
+from collections import OrderedDict
 
-def data_json(key: str, data: float, date="") -> json:
+def man_json(key: str, data: float, date="") -> json:
     """Receives data and dump on json file
     
     param: key: key to be inserted in dictionary
@@ -19,13 +20,14 @@ def data_json(key: str, data: float, date="") -> json:
         with open(f"{file}", "r") as f:
             content = json.load(f)
     except Exception as e:
-        with open(f"{file}", "w+") as f:
+        with open(f"{file}", "w") as f:
             json.dump({}, f)
             content = {}
     
     with open(f"{file}", "w") as f:
         content[date] = {key: data}
-        json.dump(content, f, indent=4)
+        ordered = OrderedDict(sorted(content.items(), key=lambda t: t[0]))
+        json.dump(ordered, f, indent=4)
     
     
 if __name__ == "__main__":
